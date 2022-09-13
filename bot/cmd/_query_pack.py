@@ -1,25 +1,30 @@
 from dataclasses import dataclass
-from typing import Callable, Coroutine
+from typing import Callable, Coroutine, Awaitable
 
 from khl import Message
 
 from dal.steam import Steam
 
 
-class QueryPack(dataclass):
+@dataclass
+class QueryPack:
     reg: Callable
     fetch: Callable
 
 
-async def steam_reg(m: Message, value: str) -> Coroutine:
+async def steam_reg(m: Message, value: str):
     try:
         friend_code = int(value)
     except Exception:
         raise ValueError('value should be an integer')
-    return Steam.create(khl=m.author.id, friend_code=friend_code)
+    return await Steam.create(khl=m.author.id, friend_code=friend_code)
 
 
-steam_query_pack = QueryPack(reg=steam_reg)
+async def steam_fetch(m: Message) -> str:
+    return (await Steam.filter(khl=m.author.id).first()).friend_code
+
+
+steam_query_pack = QueryPack(reg=steam_reg, fetch=steam_fetch)
 query_generator: dict[str, QueryPack] = {
     'steam': steam_query_pack
 }

@@ -1,6 +1,8 @@
+import asyncio
+
 from tortoise import Tortoise
 
-from ..config import _DB_URL_
+from config import config
 
 
 async def init():
@@ -8,8 +10,11 @@ async def init():
     # also specify the app name of "models"
     # which contain models from "app.models"
     await Tortoise.init(
-        db_url=_DB_URL_,
-        modules={'models': ['app.models']}
+        db_url=config().db_url,
+        modules={'models': ['dal.binding', 'dal.steam']}
     )
     # Generate the schema
     await Tortoise.generate_schemas()
+
+
+asyncio.ensure_future(init())

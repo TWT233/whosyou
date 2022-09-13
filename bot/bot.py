@@ -1,8 +1,8 @@
 from khl import Bot
 
-from config import _BOT_TOKEN_
+from config import config
 from .cmd import register_cmds_for
 
-bot = Bot(_BOT_TOKEN_)
+bot = Bot(config().bot_token)
 
 register_cmds_for(bot)
