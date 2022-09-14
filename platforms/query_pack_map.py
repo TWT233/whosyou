@@ -1,8 +1,13 @@
-from platforms.query_pack import QueryPack
-from platforms.steam import steam_query_pack
+from .apex import apex_query_pack
+from .ea import ea_query_pack
+from .query_pack import QueryPack
+from .steam import steam_query_pack
 
 _query_pack_map: dict[str, QueryPack] = {
-    'steam': steam_query_pack
+    'steam': steam_query_pack,
+    'st': steam_query_pack,
+    'apex': apex_query_pack,
+    'ea': ea_query_pack,
 }
 
 

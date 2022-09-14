@@ -1,7 +1,7 @@
 from khl import Message
 from khl.card import CardMessage, Card, Module, Element
 
-from dal.steam import Steam
+from dal.platforms import Steam
 from .query_pack import QueryPack
 
 
@@ -13,7 +13,7 @@ async def bind(m: Message, value: str):
     return await Steam.create(khl=m.author.id, friend_code=friend_code)
 
 
-async def fetch(m: Message) -> str:
+async def fetch(m: Message) -> int:
     dao = await Steam.filter(khl=m.author.id).first()
     return dao and dao.friend_code
 
