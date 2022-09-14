@@ -20,3 +20,8 @@ async def bind(m: Message, value: str, platform: str = None):
         return await m.reply(f'query failed: {e}')
 
     return await m.reply(f'done')
+
+
+@Command.command(regex=r'^\s*(\w+)id\s+(\S+)\s*$')
+async def regex_bind(m: Message, platform: str, value: str):
+    return await bind.handler(m, value, platform)
