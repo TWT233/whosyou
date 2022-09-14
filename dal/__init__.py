@@ -11,7 +11,7 @@ async def init():
     # which contain models from "app.models"
     await Tortoise.init(
         db_url=config().db_url,
-        modules={'models': ['dal.attach', 'dal.steam']}
+        modules={'models': ['dal.attach', 'dal.platforms']}
     )
     # Generate the schema
     await Tortoise.generate_schemas()

@@ -1,5 +1,5 @@
-from tortoise.models import Model
 from tortoise import fields
+from tortoise.models import Model
 
 
 class Steam(Model):
@@ -8,3 +8,11 @@ class Steam(Model):
 
     def __str__(self):
         return f'{self.khl}:{self.friend_code}'
+
+
+class EA(Model):
+    khl = fields.CharField(max_length=64, pk=True)
+    username = fields.TextField()
+
+    def __str__(self):
+        return f'{self.khl}:{self.username}'
