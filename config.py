@@ -21,8 +21,8 @@ def config() -> _Config:
 
 
 def load_config():
-    pwd = os.path.realpath(__file__)
-    config_file = os.path.join(pwd, '../config.yaml')
+    pwd = os.path.dirname(os.path.realpath(__file__))
+    config_file = os.path.join(pwd, 'config.yaml')
     with open(config_file, 'r') as f:
         c = yaml.safe_load(f)
         global _Config_
