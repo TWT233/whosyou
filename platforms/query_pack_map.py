@@ -5,8 +5,16 @@ from .steam import steam_query_pack
 
 _query_pack_map: dict[str, QueryPack] = {
     'steam': steam_query_pack,
+    'STEAM': steam_query_pack,
     'st': steam_query_pack,
+    'ST': steam_query_pack,
+
+    'Apex': apex_query_pack,
     'apex': apex_query_pack,
+    'ap': apex_query_pack,
+    'APEX': apex_query_pack,
+
+    'EA': ea_query_pack,
     'ea': ea_query_pack,
 }
 

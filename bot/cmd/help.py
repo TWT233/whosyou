@@ -39,5 +39,18 @@ def build_help():
             '例：eaid\n(机器人会回复你：twt233)\n'
         )
     ))
+    result.append(Card(
+        Module.Header('支持的平台/游戏'),
+        Module.Divider(),
+        Module.Section('steam'),
+        Module.Context('可用别名：st ST STEAM'),
+        Module.Divider(),
+        Module.Section('EA'),
+        Module.Context('可用别名：ea'),
+        Module.Divider(),
+        Module.Section('Apex'),
+        Module.Context('可用别名：ap apex APEX'),
+        Module.Divider(),
+    ))
 
     return result
