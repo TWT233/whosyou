@@ -3,7 +3,7 @@ from tortoise import fields
 
 
 class Steam(Model):
-    khl = fields.TextField(pk=True)
+    khl = fields.CharField(max_length=64, pk=True)
     friend_code = fields.IntField()
 
     def __str__(self):

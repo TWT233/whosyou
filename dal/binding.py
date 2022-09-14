@@ -1,9 +1,9 @@
-from tortoise.models import Model
 from tortoise import fields
+from tortoise.models import Model
 
 
 class Binding(Model):
-    place = fields.TextField(pk=True)
+    place = fields.CharField(max_length=64, pk=True)
     platform = fields.TextField()
 
     def __str__(self):

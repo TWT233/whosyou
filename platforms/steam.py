@@ -1,5 +1,5 @@
 from khl import Message
-from khl.card import CardMessage, Card, Module, Element, Types
+from khl.card import CardMessage, Card, Module, Element
 
 from dal.steam import Steam
 from .query_pack import QueryPack
@@ -19,7 +19,14 @@ async def fetch(m: Message) -> str:
 
 
 async def illu(m: Message, value: int) -> CardMessage:
-    value = int(value)
+    if not value:
+        return CardMessage(Card(Module.Context(Element.Text('未绑定过 steam ID'))))
+
+    try:
+        value = int(value)
+    except Exception as e:
+        return CardMessage(Card(Module.Context(Element.Text('illegal value'))))
+
     result = CardMessage(
         Card(
             Module.Section(
