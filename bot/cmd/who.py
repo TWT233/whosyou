@@ -14,3 +14,9 @@ async def who(m: Message, platform: str = None):
 
     qp = get_query_pack(platform)
     return await m.reply(await qp.illu(m, await qp.fetch(m)))
+
+
+@Command.command(regex=r'^(\S+)id|ID$')
+async def regex_who(m: Message, platform: str):
+    qp = get_query_pack(platform)
+    return await m.reply(await qp.illu(m, await qp.fetch(m)))
