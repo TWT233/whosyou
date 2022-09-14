@@ -5,7 +5,7 @@ from dal.steam import Steam
 from .query_pack import QueryPack
 
 
-async def reg(m: Message, value: str):
+async def bind(m: Message, value: str):
     try:
         friend_code = int(value)
     except Exception:
@@ -37,4 +37,4 @@ async def illu(m: Message, value: int) -> CardMessage:
     return result
 
 
-steam_query_pack = QueryPack(reg=reg, fetch=fetch, illu=illu)
+steam_query_pack = QueryPack(bind=bind, fetch=fetch, illu=illu)
