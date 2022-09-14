@@ -12,11 +12,13 @@ async def who(m: Message, platform: str = None):
     if platform is None:
         return await m.reply('platforms is required, or bind a platforms via /bind')
 
-    qp = get_query_pack(platform)
+    try:
+        qp = get_query_pack(platform)
+    except ValueError:
+        return
     return await m.reply(await qp.illu(m, await qp.fetch(m)))
 
 
-@Command.command(regex=r'^(\S+)id|ID$')
+@Command.command(regex=r'^(\w+)id|ID$')
 async def regex_who(m: Message, platform: str):
-    qp = get_query_pack(platform)
-    return await m.reply(await qp.illu(m, await qp.fetch(m)))
+    return await who.handler(m, platform)
