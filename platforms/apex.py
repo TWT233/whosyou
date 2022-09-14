@@ -10,10 +10,10 @@ async def bind(m: Message, value: str):
         friend_code = int(value)
     except Exception:
         await m.reply('看起来这不是一个 steam 好友代码，所以将看作 EA 账号进行绑定')
-        return await EA.create(khl=m.author.id, username=value)
+        return await EA.update_or_create(khl=m.author.id, defaults=dict(username=value))
     await m.reply('看起来这可以作为一个 steam 好友代码，所以将看作 steam 好友代码进行绑定\n'
                   f'如果需要绑定 EA 账号，请使用 /bind {value} ea')
-    return await Steam.create(khl=m.author.id, friend_code=friend_code)
+    return await Steam.update_or_create(khl=m.author.id, defaults=dict(friend_code=friend_code))
 
 
 async def fetch(m: Message) -> (int, str):

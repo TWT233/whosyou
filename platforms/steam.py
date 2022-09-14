@@ -10,7 +10,7 @@ async def bind(m: Message, value: str):
         friend_code = int(value)
     except Exception:
         raise ValueError('value should be an integer')
-    return await Steam.create(khl=m.author.id, friend_code=friend_code)
+    return await Steam.update_or_create(khl=m.author.id, defaults=dict(friend_code=friend_code))
 
 
 async def fetch(m: Message) -> int:

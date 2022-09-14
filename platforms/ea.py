@@ -6,7 +6,7 @@ from .query_pack import QueryPack
 
 
 async def bind(m: Message, value: str):
-    return await EA.create(khl=m.author.id, username=value)
+    return await EA.update_or_create(khl=m.author.id, defaults=dict(username=value))
 
 
 async def fetch(m: Message) -> str:
