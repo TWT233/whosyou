@@ -1,15 +1,16 @@
 from khl import Message
 from khl.command import Command
 
-from dal.binding import Binding
+from dal.attach import Attachment
 from ._util import public_msg_only
 
 
 @Command.command()
 @public_msg_only
-async def unbind(m: Message):
+async def attach(m: Message, platform: str):
     try:
-        await Binding.filter(place=Binding.make_place_for_khl(m.ctx.guild.id, m.ctx.channel.id)).delete()
+        await Attachment.create(place=Attachment.make_place_for_khl(m.ctx.guild.id, m.ctx.channel.id),
+                                platform=platform)
     except Exception as e:
         return await m.reply(f'query failed: {e}')
     return await m.reply('done')

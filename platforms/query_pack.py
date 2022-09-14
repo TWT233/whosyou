@@ -13,7 +13,7 @@ async def default_illustrator(_: Message, value) -> str:
 
 @dataclass
 class QueryPack:
-    reg: Callable[[Message, ...], Awaitable[Any]]
+    bind: Callable[[Message, ...], Awaitable[Any]]
     fetch: Callable[[Message], Awaitable[Any]]
 
     """illu stands for illustrate, generates a user-friendly message to show value"""

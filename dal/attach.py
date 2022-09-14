@@ -2,7 +2,8 @@ from tortoise import fields
 from tortoise.models import Model
 
 
-class Binding(Model):
+class Attachment(Model):
+    """attach a place to a specific platform, then platform arg can be omitted in some commands"""
     place = fields.CharField(max_length=64, pk=True)
     platform = fields.TextField()
 

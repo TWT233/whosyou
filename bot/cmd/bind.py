@@ -1,16 +1,22 @@
 from khl import Message
 from khl.command import Command
 
-from dal.binding import Binding
-from ._util import public_msg_only
+from platforms import get_query_pack
+from ._util import fetch_attached_pf
 
 
 @Command.command()
-@public_msg_only
-async def bind(m: Message, platform: str):
+async def bind(m: Message, value: str, platform: str = None):
+    """create"""
+    platform = platform or await fetch_attached_pf(m)
+    if platform is None:
+        return await m.reply('platforms is required, or bind a platforms via /bind')
+
     try:
-        await Binding.create(place=Binding.make_place_for_khl(m.ctx.guild.id, m.ctx.channel.id),
-                             platform=platform)
+        q = await get_query_pack(platform).bind(m, value)
+    except ValueError as e:
+        return await m.reply(f'wrong input: {e}')
     except Exception as e:
         return await m.reply(f'query failed: {e}')
-    return await m.reply('done')
+
+    return await m.reply(f'done')
