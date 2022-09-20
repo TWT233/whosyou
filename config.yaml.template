@@ -1,0 +1,6 @@
+bot:
+  token: 'xxxxxxxxxxxxxxxxxxxxxxx'
+  verify_token: 'x'
+
+dal:
+  url: 'mysql://xxxxxxxx'

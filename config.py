@@ -8,6 +8,7 @@ import yaml
 @dataclass
 class _Config:
     bot_token: str
+    verify_token: str
     db_url: str
 
 
@@ -26,4 +27,8 @@ def load_config():
     with open(config_file, 'r') as f:
         c = yaml.safe_load(f)
         global _Config_
-        _Config_ = _Config(bot_token=c['bot']['token'], db_url=c['dal']['url'])
+        _Config_ = _Config(
+            bot_token=c['bot'].get('token', ''),
+            verify_token=c['bot'].get('verify_token', ''),
+            db_url=c['dal'].get('url', ''),
+        )
