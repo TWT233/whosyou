@@ -28,9 +28,13 @@ async def illu(m: Message, value: (int, str)) -> CardMessage:
 
     result = Card()
     if value[0]:
-        result.append(Module.Section(Element.Text(f'TA 的 steam 好友代码: {value[0]}')))
+        result.append(Module.Header('TA 的 steam 好友代码'), )
+        result.append(Module.Section(Element.Text(f'{value[0]}')))
     if value[1]:
-        result.append(Module.Section(Element.Text(f'TA 的 EA 账号：{value[1]}')))
+        result.append(Module.Header('TA 的 EA 账号'))
+        result.append(Module.Section(Element.Text(f'{value}')))
+    result.append(Module.Divider())
+    result.append(Module.Context('想要其他命令用法？@我 / 输入"/help" 即可'))
     return CardMessage(result)
 
 

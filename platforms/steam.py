@@ -29,9 +29,10 @@ async def illu(m: Message, value: int) -> CardMessage:
 
     result = CardMessage(
         Card(
-            Module.Section(
-                Element.Text(f'TA 的 steam 好友代码: {value}')
-            )
+            Module.Header('TA 的 steam 好友代码'),
+            Module.Section(Element.Text(f'{value}')),
+            Module.Divider(),
+            Module.Context('想要其他命令用法？@我 / 输入"/help" 即可'),
         )
     )
     return result

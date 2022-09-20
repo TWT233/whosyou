@@ -18,7 +18,12 @@ async def illu(m: Message, value: str) -> CardMessage:
     if not value:
         return CardMessage(Card(Module.Context(Element.Text('未绑定过 EA 账号'))))
 
-    result = Card(Module.Section(Element.Text(f'TA 的 EA 账号：{value}')))
+    result = Card(
+        Module.Header('TA 的 EA 账号'),
+        Module.Section(Element.Text(f'{value}')),
+        Module.Divider(),
+        Module.Context('想要其他命令用法？@我 / 输入"/help" 即可'),
+    )
     return CardMessage(result)
 
 
