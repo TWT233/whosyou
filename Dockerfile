@@ -9,6 +9,4 @@ WORKDIR whosyou
 
 RUN pip install -r requirements.txt
 
-COPY config.yaml config.yaml
-
 CMD python main.py
