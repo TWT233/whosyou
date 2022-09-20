@@ -1,7 +1,9 @@
 import functools
-from typing import Optional
+from typing import Optional, List
 
 from khl import Message, PublicChannel
+from khl.card import CardMessage, Card, Module
+from khl.card.interface import _Module
 
 from dal.attach import Attachment
 
@@ -24,3 +26,19 @@ def public_msg_only(func):
         return await func(m, *args, **kwargs)
 
     return checks
+
+
+def help_helper_context() -> List[_Module]:
+    return [Module.Divider(), Module.Context('想要其他命令用法？@我或输入 "/help" 即可')]
+
+
+def done_card() -> CardMessage:
+    return CardMessage(
+        Card(Module.Section('成功！'), *help_helper_context())
+    )
+
+
+def missing_pf_card() -> CardMessage:
+    return CardMessage(
+        Card(Module.Section('不知道是在找哪个平台/游戏的ID呢'), *help_helper_context())
+    )

@@ -2,7 +2,7 @@ from khl import Message
 from khl.command import Command
 
 from dal.attach import Attachment
-from ._util import public_msg_only
+from ._util import public_msg_only, done_card
 
 
 @Command.command()
@@ -13,4 +13,4 @@ async def attach(m: Message, platform: str):
                                 platform=platform)
     except Exception as e:
         return await m.reply(f'query failed: {e}')
-    return await m.reply('done')
+    return await m.reply(done_card())
