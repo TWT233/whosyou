@@ -33,4 +33,4 @@ jobs:
         uses: docker/build-push-action@v3.1.1
         with:
           push: true
-          tags: khl.py/whosyou:${{steps.current.outputs.formattedTime}}
+          tags: ccr.ccs.tencentyun.com/khl.py/whosyou:${{steps.current.outputs.formattedTime}}
