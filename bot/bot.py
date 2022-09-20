@@ -9,6 +9,6 @@ cert = Cert(
     verify_token=config().verify_token,
 )
 
-bot = Bot(cert=cert, port=9000)
+bot = Bot(cert=cert, port=9000, route='/')
 
 register_cmds_for(bot)
